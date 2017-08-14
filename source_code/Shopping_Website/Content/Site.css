@@ -1,0 +1,164 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+nav > li > a {
+    color: #428bca;
+}
+
+/* Main Content */
+
+.flex-container {
+    display: -moz-flex; /* Mozilla */
+    display: -ms-flex; /* IE */
+    display: -webkit-flex; /* Webkit */
+    display: flex;
+    -moz-flex-direction: row; /* Mozilla */
+    -webkit-flex-direction: row; /* Webkit */
+    -ms-flex-direction: row; /* IE */
+    flex-direction: row;
+    width: 90%;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center
+}
+
+    .flex-container div {
+        padding: 0px 2px;
+        -moz-align-content: center; /* Mozilla */
+        -webkit-align-content: center; /* Webkit */
+        -ms-align-content: center; /* IE */
+        align-content: center;
+        -moz-flex: 1; /* Mozilla */
+        -webkit-flex: 1; /* Webkit */
+        -ms-flex: 1; /* IE */
+        flex: 1;
+        text-align: center;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+        .flex-container div p {
+            text-transform: uppercase;
+            color: #C01176;
+            font-weight: bold;
+            padding-top: 5px;
+        }
+
+.viewProduct {
+    border: gray solid;
+}
+
+    .viewProduct td {
+        padding: 20px;
+    }
+
+/* Footer */
+
+hr {
+    border: 2px solid gray;
+}
+
+footer {
+    display: inline-flex;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 60px;
+    padding-bottom: 20px;
+}
+
+    footer div {
+        margin-left: 30px;
+        border-top: 1px dotted #fff;
+        padding: 5px;
+        text-transform: uppercase;
+        color: #928e92;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        footer div a:hover, footer div a:visited, footer div a:active {
+            text-decoration: none;
+            color: #eeca6c;
+        }
+
+/* Login */
+.flex-login {
+    display: -moz-flex; /* Mozilla */
+    display: -ms-flex; /* IE */
+    display: -webkit-flex; /* Webkit */
+    display: flex;
+    -moz-flex-direction: row; /* Mozilla */
+    -webkit-flex-direction: row; /* Webkit */
+    -ms-flex-direction: row; /* IE */
+    flex-direction: row;
+    width: 90%;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center
+}
+
+    .flex-login div {
+        padding: 0px 2px;
+        -moz-align-content: center; /* Mozilla */
+        -webkit-align-content: center; /* Webkit */
+        -ms-align-content: center; /* IE */
+        align-content: center;
+        -moz-flex: 1; /* Mozilla */
+        -webkit-flex: 1; /* Webkit */
+        -ms-flex: 1; /* IE */
+        flex: 1;
+        text-align: left;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .flex-login input {
+        padding: 5px;
+        margin: 5px 10px;
+    }
+
+    .flex-login form {
+        border: 3px solid #f1f1f1;
+    }
+
+.err {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
