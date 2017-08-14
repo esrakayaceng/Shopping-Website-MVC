@@ -1,0 +1,48 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "ShoppingBag";
+}
+
+<h2>Shopping Bag</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Greeting Cards", "GreetingCards", "Product")</li>
+    <li>@Html.ActionLink("Notebook", "Notebook", "Product")</li>
+    <li>@Html.ActionLink("Stationery", "Stationery", "Product")</li>
+    <li>@Html.ActionLink("Easter Gifts", "EasterGifts", "Product")</li>
+    <li>@Html.ActionLink("Bath & Body", "BathBody", "Product")</li>
+    <li>@Html.ActionLink("Candles", "Candles", "Product")</li>
+</ul>
+<div style="margin-left:11%;padding:1px 16px;height:auto;">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewData["ShoppingBag"] != null) {
+                    foreach (var value in (IEnumerable<ProductModel>)ViewData["ShoppingBag"])
+                    {
+                    <tr>
+                        <td>@value.Name</td>
+                        <td>@value.Category</td>
+                        <td><b>$</b>@value.Price</td>
+                        <td>
+                            <a class="btn btn-primary" href='@string.Format("/Product/ProductDetail?id={0}", value._id)'>View</a>
+                            <a class="btn btn-primary" href='@string.Format("/Product/Remove?id1={0}", value._id)'>Delete</a>                     
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+            <tfooter>
+            </tfooter>
+        </table>
+    </div>
+    <div>  <a class="btn btn-success" href="/Product/Checkout">Checkout</a></div>
+</div>
+

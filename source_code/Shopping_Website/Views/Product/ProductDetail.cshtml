@@ -1,0 +1,47 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+<h2>Product Detail</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Greeting Cards", "GreetingCards", "Product")</li>
+    <li>@Html.ActionLink("Notebook", "Notebook", "Product")</li>
+    <li>@Html.ActionLink("Stationery", "Stationery", "Product")</li>
+    <li>@Html.ActionLink("Easter Gifts", "EasterGifts", "Product")</li>
+    <li>@Html.ActionLink("Bath & Body", "BathBody", "Product")</li>
+    <li>@Html.ActionLink("Candles", "Candles", "Product")</li>
+</ul>
+<div class="flex-container" style="width: 88%">
+@foreach (var value in (IEnumerable<ProductModel>)ViewData["Detail"])
+{
+    <div><img src='@string.Format("../../Content/images/{0}", value.ImageURL)'></div>
+    <div style="text-align: left;" class="viewProduct">
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr><td><b>@value.Name</b></td></tr>
+                <tr><td><b><em>Category: </em></b>@value.Category</td></tr>
+                <tr><td><b><em>Price: </em></b><b>$</b>@value.Price</td></tr>
+                <tr><td>@value.Description</td></tr>
+                <tr><td><em>Only </em><b>@value.Quantity</b><em> left </em></td></tr>
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td>
+                       @if (value.Quantity < 1)
+                       {
+                        <button disabled class="btn btn-primary">Add to Bag</button>
+                       }
+                       else
+                       {
+                        <a class="btn btn-primary" href='@string.Format("/Product/ShoppingBag?id={0}", value._id)'>Add to Bag</a>
+                       }
+                        <a class="btn btn-danger" href="/Product/Index">Cancel</a> 
+                    </td>
+                </tr>
+            </tfooter>
+        </table>
+    </div>
+}
+</div>
