@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@if (TempData["message"] != null)
+{
+<div class="err">@TempData["message"].ToString()</div>
+}
+<div class="flex-login" style="padding-top:30px;">
+    <div>
+        <p><b>I Have an Account</b></p>
+        <p>Welcome back! To access your account, please enter your email and password and click Sign In.</p>
+        @using (Ajax.BeginForm("Index", "Login", new AjaxOptions { HttpMethod = "POST" }))
+        {
+            <div style="text-align: center; padding-top: 10px;">
+                <label><b>Username:</b></label>
+                @Html.TextBox("username", "", new { required = "required", placeholder = "Enter username" })
+            </div>
+            <div style="text-align: center;">
+                <label><b>Password:</b></label>
+                @Html.TextBox("password", "", new { required = "required", placeholder = "Enter password", type="password" })
+            </div>
+            <div style="text-align: center;">
+                <input type="submit" value="Login" name="login" class="btn btn-success">
+            </div>
+            <div style="background-color:#f1f1f1;">
+                <span class="psw">Forgot <a href="mailto:someone@ABCstore.com?Subject=Request%20for%20password%20change" target="_top">password?</a></span>
+            </div>
+        }
+    </div>
+    <div style="padding-left:20px;">
+        <p><b>Create an Account</b></p>
+        <p>Welcome! Creating an account will give you access to all of the great features of our site</p>
+        <a class="btn btn-success" href="/Login/Registration">Register</a>
+    </div>
+</div>
