@@ -1,0 +1,49 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "Customers";
+}
+@if (TempData["message"] != null)
+{
+    <div class="err">@TempData["message"].ToString()</div>
+}
+<h2>Customers</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+<div style="margin-left:11%;padding:1px 16px;height:auto;">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in (IEnumerable<UserModel>)ViewData["Customers"])
+                {
+                <tr>
+                    <td>@value.Firstname</td>
+                    <td>@value.Lastname</td>
+                    <td>@value.Phone</td>
+                    <td>@value.Email</td>
+                    <td>
+                        <a class="btn btn-primary" href='@string.Format("/Admin/CustomerDetail?id={0}", value._id)'>View</a>
+                        <a class="btn btn-primary" href='@string.Format("/Admin/EditCustomer?id={0}", value._id)'>Edit</a>
+                        <a class="btn btn-primary" href='@string.Format("/Admin/DeleteCustomer?id={0}", value._id)'>Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfooter>
+            </tfooter>
+        </table>
+    </div>
+</div>
+

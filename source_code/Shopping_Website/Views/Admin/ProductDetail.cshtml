@@ -1,0 +1,37 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+<h2>Product Detail</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+<div class="flex-container" style="width: 88%">
+    @foreach (var value in (IEnumerable<ProductModel>)ViewData["Detail"])
+    {
+        <div><img src='@string.Format("../../Content/images/{0}", value.ImageURL)'></div>
+        <div style="text-align: left;" class="viewProduct">
+            <table class="table">
+                <thead></thead>
+                <tbody>
+                    <tr><td><b>@value.Name</b></td></tr>
+                    <tr><td><b><em>Category: </em></b>@value.Category</td></tr>
+                    <tr><td><b><em>Price: </em></b><b>$</b>@value.Price</td></tr>
+                    <tr><td>@value.Description</td></tr>
+                    <tr><td><em>Only </em><b>@value.Quantity</b><em> left </em></td></tr>
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <td>
+                            <a class="btn btn-danger" href="/Admin/Products">Back</a>
+                        </td>
+                    </tr>
+                </tfooter>
+            </table>
+        </div>
+    }
+</div>

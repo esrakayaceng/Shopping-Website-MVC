@@ -1,0 +1,30 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "Admin Page";
+}
+
+<h2>Admin Page</h2>
+@foreach (var value in (IEnumerable<UserModel>)ViewData["AdminInfo"])
+{
+    <div><a class="btn btn-primary" href='@string.Format("/Admin/Logout")'>Logout</a></div>
+    <h2><b>Hello </b>@value.Firstname @value.Lastname</h2>
+    <div class="flex-container" style="padding: 60px 0px;">
+        <div>
+            <img src="~/Content/images/customers.png" alt="customers"><br />
+            <b><a href='@string.Format("/Admin/Customers")'>Customers</a></b>
+        </div>
+        <div>
+            <img src="~/Content/images/orders.png" alt="orders"><br /><br /><br />
+            <b><a href='@string.Format("/Admin/Orders")'>Orders</a></b>
+        </div>
+        <div>
+            <img src="~/Content/images/products.png" alt="products"><br /><br /><br />
+            <b><a href='@string.Format("/Admin/Products")'>Products</a></b>
+        </div>
+        <div>
+            <img src="~/Content/images/search.png" alt="search"><br /><br /><br />
+            <b><a href='@string.Format("/Admin/Search")'>Search</a></b>
+        </div>
+    </div>
+}
+

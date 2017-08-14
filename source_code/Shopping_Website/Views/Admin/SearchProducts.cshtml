@@ -1,0 +1,91 @@
+﻿@using Shopping_Website.Models;
+
+@{
+    ViewBag.Title = "SearchProducts";
+}
+
+<h2>Search Product</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="display:inline-flex;margin-top:15px; background-color:#e3f2fd; border-radius: 5px; margin-bottom:15px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+<div>
+    <form method="post" action='/Admin/SearchProducts' id="searchForm">
+        <table class="table table-condensed">
+            <tbody>
+                <tr>
+                    <th >Product Name: </th>
+                    <td><input type="text" name="name" placeholder="Product Name" size="40" value=""></td>
+                </tr>
+                <tr>
+                    <th>Category: </th>
+                    <td>
+                        <select name="category" form="searchForm">
+                            <option value="">Select</option>
+                            <option value="Greeting Cards">Greeting Cards</option>
+                            <option value="Notebook">Notebook</option>
+                            <option value="Stationery">Stationery</option>
+                            <option value="Easter Gifts">Easter Gifts</option>
+                            <option value="Bath & Body">Bath & Body</option>
+                            <option value="Candles">Candles</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Price: </th>
+                    <td><b>$ </b><input type="text" name="price" placeholder="Price" size="20" value=""></td>
+                </tr>
+                <tr>
+                    <th>Quantity: </th>
+                    <td><b>$ </b><input type="text" name="quantity" placeholder="Quantity" size="20" value=""></td>
+                </tr>
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Search" class="btn btn-success">
+                    </td>
+                </tr>
+            </tfooter>
+        </table>
+    </form>
+</div>
+@if (ViewData["Data"] != null)
+{
+    <div>
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var value in (IEnumerable<ProductModel>)ViewData["Data"])
+                {
+                        <tr>
+                            <td>@value.Name</td>
+                            <td>@value.Category</td>
+                            <td>@value.Price</td>
+                            <td>@value.Quantity</td>
+                            <td>
+                                <a class="btn btn-primary" href='@string.Format("/Admin/ProductDetail?id={0}", value._id)'>View</a>
+                                <a class="btn btn-primary" href='@string.Format("/Admin/EditProduct?id={0}", value._id)'>Edit</a>
+                                <a class="btn btn-primary" href='@string.Format("/Admin/DeleteProduct?id={0}", value._id)'>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfooter>
+                </tfooter>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,45 @@
+﻿@using Shopping_Website.Models;
+@{ 
+    ViewBag.Title = "OrderDetail";
+}
+
+<h2>Order Detail</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+<div style="margin-left:11%;padding:1px 16px;height:auto;">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in (Dictionary<List<ProductModel>, List<int>>)ViewData["ListofProduct"])
+                {
+                    for (int i = 0; i < @value.Key.Count; i++)
+                    {
+                        <tr>
+                            <td>@value.Key[i].Name</td>
+                            <td><b>$</b>@value.Key[i].Price</td>
+                            <td>@value.Value[i]</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td>
+                        <a class="btn btn-info" href='@string.Format("/Admin/Orders")'>Back</a>
+                    </td>
+                </tr>
+            </tfooter>
+        </table>
+    </div>
+</div>

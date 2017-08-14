@@ -1,0 +1,36 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "Products";
+}
+@if (TempData["message"] != null)
+{
+    <div class="err">@TempData["message"].ToString()</div>
+}
+<h2>Products</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; margin-right: 15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+
+<div class="d-flex flex-nowrap" style="padding: 15px;">
+    <div class="d-flex flex-nowrap">
+        <div class="p-2">
+            <a class="btn btn-warning" href='@string.Format("/Admin/AddProduct")'>Add Product</a>
+        </div>
+    </div>
+    <br />
+    <h3>Categories</h3>
+    <div class="d-flex flex-nowrap">
+        <div class="p-2">
+            <a class="btn btn-success" href='@string.Format("/Admin/BathBody")'>Bath & Body</a>
+            <a class="btn btn-success" href='@string.Format("/Admin/Candles")'>Candles</a>
+            <a class="btn btn-success" href='@string.Format("/Admin/EasterGifts")'>Easter Gifts</a>
+            <a class="btn btn-success" href='@string.Format("/Admin/GreetingCards")'>Greeting Cards</a>
+            <a class="btn btn-success" href='@string.Format("/Admin/Notebook")'>Notebook</a>
+            <a class="btn btn-success" href='@string.Format("/Admin/Stationery")'>Stationery</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "EditProduct";
+}
+
+<h2>Edit Product</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="display: inline-flex;margin-bottom:10px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Customers", "Customers", "Admin")</li>
+    <li>@Html.ActionLink("Orders", "Orders", "Admin")</li>
+    <li>@Html.ActionLink("Products", "Products", "Admin")</li>
+    <li>@Html.ActionLink("Search", "Search", "Admin")</li>
+</ul>
+<div class="table-responsive">
+    <form method="post" action='/Admin/EditProduct'>
+        <table class="table table-condensed">
+            <tbody>
+                @foreach (var value in (IEnumerable<ProductModel>)ViewData["ProductInfo"])
+                {
+                    string select1, select2, select3, select4, select5, select6;
+                    select1 = select2 = select3 = select4 = select5 = select6 = "";
+                    <tr>
+                        <th style="text-align: right;">Name: </th>
+                        <td><input type="text" name="name" value="@value.Name" /></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Category: </th>
+                        <td>
+                            <select name="category">
+                                <option value="Greeting Cards" @(value.Category.Equals("Greeting Cards") ? "selected" : "") > Greeting Cards</option>
+                                <option value="Notebook" @(value.Category.Equals("Notebook") ? "selected" : "") >Notebook</option>
+                                <option value="Stationery" @(value.Category.Equals("Stationery") ? "selected" : "") >Stationery</option>
+                                <option value="Easter Gifts" @(value.Category.Equals("Easter Gifts") ? "selected" : "") >Easter Gifts</option>
+                                <option value="Bath & Body" @(value.Category.Equals("Bath & Body") ? "selected" : "") >Bath & Body</option>
+                                <option value="Candles" @(value.Category.Equals("Candles") ? "selected" : "") > Candles</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Price: </th>
+                        <td>$ <input type="text" name="price" value="@value.Price"></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Description: </th>
+                        <td><textarea rows="6" cols="300" name="description">@value.Description</textarea></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Quantity: </th>
+                        <td><input type="text" name="quantity" value="@value.Quantity" /></td>
+                    </tr>
+                    <tr>
+                        <th>Product Image: </th>
+                        <td>
+                            <input type="file" name="image" accept="image/*">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            @Html.Hidden("ProductID", value._id)
+                            <img src='@string.Format("../../Content/images/{0}", value.ImageURL)' style="width: 55%;">
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-success">
+                        <a class="btn btn-danger" href="/Admin/Products">Cancel</a>
+                    </td>
+                </tr>
+            </tfooter>
+        </table>
+    </form>
+</div>
+
+
