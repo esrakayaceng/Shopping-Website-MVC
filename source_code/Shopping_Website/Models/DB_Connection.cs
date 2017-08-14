@@ -114,7 +114,7 @@ namespace Shopping_Website.Models
                 State = "MA",
                 ZipCode = 02215,
                 Password = "12345",
-                UserType = "customer"
+                UserType = "admin"
             };
             collection_user.InsertOne(user);
 
@@ -133,27 +133,10 @@ namespace Shopping_Website.Models
                 UserType = "customer"
             };
             collection_user.InsertOne(user);
-
-            user = new UserModel
-            {
-                Firstname = "Sahar",
-                Lastname = "Amini",
-                Username = "samini",
-                Phone = 6127319833,
-                Email = "samini@bu.edu",
-                Address = "808 Commonwealth Ave.",
-                City = "Boston",
-                State = "MA",
-                ZipCode = 02215,
-                Password = "12345",
-                UserType = "admin"
-            };
-            collection_user.InsertOne(user);
         }
 
         public static void CreateOrderCollection()
         {
-
             // Order
             // Create Collection
             var collection_order = db.GetCollection<OrderModel>("Orders");
