@@ -1,0 +1,41 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "OrderStatus";
+}
+
+<h2>Order Status</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Edit Account", "EditAccount", "Customer")</li>
+    <li>@Html.ActionLink("Order Status", "OrderStatus", "Customer")</li>
+    <li>@Html.ActionLink("Checkout", "Checkout", "Customer")</li>
+</ul>
+<div style="margin-left:11%;padding:1px 16px;height:auto;">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Order Date</th>
+                    <th>Order Status</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var value in (IEnumerable<OrderModel>)ViewData["Orders"])
+               {
+                <tr>
+                    <td>@value.OrderDate</td>
+                    <td><b>$</b>@value.TotalPrice</td>
+                    <td>
+                        @if (value.OrderStatus.Equals(false)){<div>not ready for pick up</div>}
+                        else {<div> ready for pick up</div>}
+                    </td>
+                    <td><a class="btn btn-default" href='@string.Format("/Customer/OrderDetail?id={0}", value._id)'>Order Detail</a> </td>
+                </tr>
+               }
+            </tbody>
+            <tfooter>
+            </tfooter>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "EditAccount";
+}
+
+<h2>Edit Account</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="display: inline-flex;margin-bottom:10px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Edit Account", "EditAccount", "Customer")</li>
+    <li>@Html.ActionLink("Order Status", "OrderStatus", "Customer")</li>
+    <li>@Html.ActionLink("Checkout", "Checkout", "Customer")</li>
+</ul>
+<div class="table-responsive">
+    <form method="post" action='/Customer/EditAccount'>
+        <table class="table table-condensed">
+            <tbody>
+                @foreach (var value in (IEnumerable<UserModel>)ViewData["UserInfo"])
+                {
+                    <tr>
+                        <th style="text-align: right;">First Name: </th>
+                        <td><input type="text" name="fname" value="@value.Firstname" readonly/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Last Name: </th>
+                        <td><input type="text" name="lname" value="@value.Lastname" readonly/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Username: </th>
+                        <td><input type="text" name="username" value="@value.Username"></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Password: </th>
+                        <td><input type="password" name="password" value="@value.Password"/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Email Address: </th>
+                        <td><input type="email" name="email" value="@value.Email"/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Address: </th>
+                        <td>
+                            <textarea rows="3" cols="50" name="address">@value.Address</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">City: </th>
+                        <td><input type="text" name="city" value="@value.City"/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">State: </th>
+                        <td><input type="text" name="state" value="@value.State"/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Zip Code: </th>
+                        <td><input type="text" name="zipCode" value="@value.ZipCode"/></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Phone Number: </th>
+                        <td><input type="tel" name="phone" value="@value.Phone"/></td>
+                    </tr>
+                }
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-success">
+                        <a class="btn btn-danger" href="/Customer/Index">Cancel</a> 
+                    </td>
+                </tr>
+            </tfooter>
+        </table>
+    </form>
+</div>

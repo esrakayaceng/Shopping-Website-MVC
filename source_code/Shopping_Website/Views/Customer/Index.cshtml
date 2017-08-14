@@ -1,0 +1,31 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "Customer Page";
+}
+@if (TempData["message"] != null)
+{
+    <div class="err">@TempData["message"].ToString()</div>
+}
+@foreach (var value in (IEnumerable<UserModel>)ViewData["CustomerInfo"])
+{ 
+    <div><a class="btn btn-primary" href='@string.Format("/Customer/Logout")'>Logout</a></div>
+    <h2><b>Hello </b>@value.Firstname @value.Lastname</h2>
+    <div style="font-size: 18px; text-align: center" ;>
+        <p> We don't have delivery option for now, after placing your order, we will send you a notification that your order is ready for pick up.</p><br />
+        <p> You will be able to pay store directly (cash, credit, gift card).</p><br />
+    </div>
+    <div class="flex-container" style="padding: 60px 0px;">
+        <div>
+            <img src="~/Content/images/customers.png" alt="customers"><br />
+            <b><a href='@string.Format("/Customer/EditAccount")'>Edit Account</a></b>
+        </div>
+        <div>
+            <img src="~/Content/images/orders.png" alt="orders"><br /><br /><br />
+            <b><a href='@string.Format("/Customer/Checkout")'>Checkout</a></b>
+        </div>
+        <div>
+            <img src="~/Content/images/search.png" alt="status"><br /><br /><br />
+            <b><a href='@string.Format("/Customer/OrderStatus")'>Order Status</a></b>
+        </div>
+    </div>
+}

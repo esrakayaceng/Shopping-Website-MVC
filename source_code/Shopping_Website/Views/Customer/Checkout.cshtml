@@ -1,0 +1,56 @@
+﻿@using Shopping_Website.Models;
+@{
+    ViewBag.Title = "Checkout";
+}
+@if (TempData["message"] != null)
+{
+    <div class="err">@TempData["message"].ToString();</div>
+}
+
+<h2>Ready to Order</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist" style="float:left;margin-top:15px; background-color:#e3f2fd; border-radius: 5px;">
+    <li>@Html.ActionLink("Edit Account", "EditAccount", "Customer")</li>
+    <li>@Html.ActionLink("Order Status", "OrderStatus", "Customer")</li>
+    <li>@Html.ActionLink("Checkout", "Checkout", "Customer")</li>
+</ul>
+<div style="margin-left:11%;padding:1px 16px;height:auto;">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewData["Checkout"] != null) {
+                   
+                    foreach (var value in (IEnumerable<DataDictionary>)ViewData["Checkout"])
+                    {
+                        <tr>
+                            <td>@value.ListofProduct[0].Name</td>
+                            <td>@value.Number</td>
+                            <td><b>$</b>@value.ListofProduct[0].Price</td>
+                            <td>
+                                <a class="btn btn-primary" href='@string.Format("/Customer/Remove?id={0}", value.ListofProduct[0]._id)'>Delete</a>
+                            </td>
+                        </tr>
+                  
+                    }
+                }
+            </tbody>
+            <tfooter>
+            </tfooter>
+        </table>
+    </div>
+    <div>
+        <b>Total Price: $</b> @ViewData["TotalPrice"]
+    </div>
+    @if (Session["ShoppingBag"] != null)
+    {
+        <div style="padding-top: 20px;"><a class="btn btn-success" href="/Customer/SubmitOrder">Submit</a></div>
+    }
+</div>
+
