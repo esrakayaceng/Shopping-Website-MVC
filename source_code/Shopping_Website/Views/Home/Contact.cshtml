@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- YOUR_API_KEY -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu4cXYJKxTGfSCdAd0A6yrp1cil7uDTJ4&libraries=places&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+   $(document).ready(function () {
+     initialize();
+   });
+    function initialize() {
+        var latlng = new google.maps.LatLng(47.639478, -122.128319);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: latlng
+        });
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'ABC Store'
+        });
+    }
+</script>  
+
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="flex-container">
+    <div  id="map" style="width: 500px; height: 500px;">
+    </div>
+    <div style="text-align:left; padding-left:3%;">
+        <address>
+            One Microsoft Way<br />
+            Redmond, WA 98052-6399<br />
+            <abbr title="Phone">Phone:</abbr>
+            425.555.0100
+        </address>
+
+        <address>
+            <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        </address>
+
+    </div>
+</div>
+<div style="clear:both;"></div>
